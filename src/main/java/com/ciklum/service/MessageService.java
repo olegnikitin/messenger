@@ -1,5 +1,6 @@
 package com.ciklum.service;
 
+import com.ciklum.dao.ApplicationDao;
 import com.ciklum.domain.Message;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,8 @@ import java.util.List;
  */
 @Service
 public class MessageService implements ApplicationService<Message> {
+
+    private ApplicationDao<Message> applicationDao;
 
     @Override
     public List<Message> findAll() {
