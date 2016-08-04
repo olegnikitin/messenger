@@ -16,21 +16,26 @@ public class MessageService implements ApplicationService<Message> {
 
     @Override
     public List<Message> findAll() {
-        return null;
+        return applicationDao.findAll();
     }
 
     @Override
     public Message find(Long id) {
-        return null;
+        return applicationDao.find(id);
     }
 
     @Override
-    public Message update(Message message) {
-        return null;
+    public void create(Message message) {
+        applicationDao.create(message);
+    }
+
+    @Override
+    public void update(Message message) {
+        applicationDao.update(message);
     }
 
     @Override
     public void delete(Message message) {
-
+        applicationDao.delete(message);
     }
 }

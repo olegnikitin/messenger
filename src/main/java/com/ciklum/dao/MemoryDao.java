@@ -7,12 +7,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by olegnikitindev on 04.08.2016.
  */
 @Repository
 public class MemoryDao implements ApplicationDao<Message> {
+
+    private final AtomicLong sequence = new AtomicLong();
 
     private Map<User, List<Message>> storage = new ConcurrentHashMap<User, List<Message>>();
 
@@ -27,8 +30,14 @@ public class MemoryDao implements ApplicationDao<Message> {
     }
 
     @Override
-    public Message update(Message message) {
-        return null;
+    public void create(Message message) {
+        message.setId(sequence.incrementAndGet());
+        //TODO: Add
+    }
+
+    @Override
+    public void update(Message message) {
+
     }
 
     @Override

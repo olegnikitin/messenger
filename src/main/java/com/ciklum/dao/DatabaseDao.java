@@ -1,6 +1,7 @@
 package com.ciklum.dao;
 
 import com.ciklum.domain.Message;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,22 +18,32 @@ public class DatabaseDao implements ApplicationDao<Message> {
     private SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Message> findAll() {
-        return null;
+        return (List<Message>) getSession().createQuery("from Message m order by m.sender.name").list();
     }
 
     @Override
     public Message find(Long id) {
-        return null;
+        return (Message) getSession().get(Message.class, id);
     }
 
     @Override
-    public Message update(Message message) {
-        return null;
+    public void create(Message message) {
+        getSession().save(message);
+    }
+
+    @Override
+    public void update(Message message) {
+        getSession().update(message);
     }
 
     @Override
     public void delete(Message message) {
+        getSession().delete(message);
+    }
 
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 }

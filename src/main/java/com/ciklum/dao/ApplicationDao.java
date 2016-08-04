@@ -8,6 +8,7 @@ import java.util.List;
 public interface ApplicationDao<T> {
     List<T> findAll();
     T find(Long id);
-    T update(T t);
+    void create(T t);
+    void update(T t);
     void delete(T t);
 }
