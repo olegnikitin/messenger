@@ -23,8 +23,13 @@ public class Message implements Serializable {
     @ManyToOne(optional = false)
     private User sender;
 
-    @ManyToOne(optional = false)
-    private User recipient;
+    public Message() {
+    }
+
+    public Message(String text, User sender) {
+        this.text = text;
+        this.sender = sender;
+    }
 
     public Long getId() {
         return id;
@@ -50,14 +55,6 @@ public class Message implements Serializable {
         this.sender = sender;
     }
 
-    public User getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(User recipient) {
-        this.recipient = recipient;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,9 +63,7 @@ public class Message implements Serializable {
         Message message = (Message) o;
 
         if (!id.equals(message.id)) return false;
-        if (!text.equals(message.text)) return false;
-        if (!sender.equals(message.sender)) return false;
-        return recipient.equals(message.recipient);
+        return text.equals(message.text);
 
     }
 
@@ -76,8 +71,6 @@ public class Message implements Serializable {
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + text.hashCode();
-        result = 31 * result + sender.hashCode();
-        result = 31 * result + recipient.hashCode();
         return result;
     }
 

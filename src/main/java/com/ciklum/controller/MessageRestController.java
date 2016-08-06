@@ -1,14 +1,13 @@
 package com.ciklum.controller;
 
 import com.ciklum.domain.Message;
+import com.ciklum.domain.User;
 import com.ciklum.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,12 +35,18 @@ public class MessageRestController {
     }
 
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
-    public ResponseEntity<?> create() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> create(@RequestParam String text) {
+        if(StringUtils.hasText(text)) {
+            Message message = new Message(text, new User());
+            messageService.create(message);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @RequestMapping(value = "/messages/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable Long id) {
+    public ResponseEntity<?> update(@PathVariable Long id,
+                                    @RequestParam String text) {
         return ResponseEntity.ok().build();
     }
 
