@@ -1,14 +1,12 @@
 package com.ciklum.dao;
 
 import com.ciklum.domain.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by olegnikitindev on 07.08.2016.
  */
-@Repository
 public class MemoryUserDao implements UserDao<User> {
 
     @Override

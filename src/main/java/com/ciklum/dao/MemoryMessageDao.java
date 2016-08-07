@@ -2,7 +2,6 @@ package com.ciklum.dao;
 
 import com.ciklum.domain.Message;
 import com.ciklum.domain.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by olegnikitindev on 04.08.2016.
  */
-@Repository
 public class MemoryMessageDao implements ApplicationDao<Message> {
 
     private final AtomicLong sequence = new AtomicLong();
