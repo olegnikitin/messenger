@@ -12,7 +12,7 @@ import java.util.List;
  * Created by olegnikitindev on 04.08.2016.
  */
 @Repository
-public class DatabaseMessageDao implements ApplicationDao<Message> {
+public class DatabaseMessageDao implements MessageDao<Message> {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -20,7 +20,7 @@ public class DatabaseMessageDao implements ApplicationDao<Message> {
     @Override
     @SuppressWarnings("unchecked")
     public List<Message> findAll() {
-        return (List<Message>) getSession().createQuery("from Message m order by m.sender.name").list();
+        return (List<Message>) getSession().createQuery("from Message m order by m.sender.name, id desc").list();
     }
 
     @Override

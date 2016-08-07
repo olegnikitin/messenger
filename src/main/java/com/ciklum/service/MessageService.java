@@ -1,9 +1,10 @@
 package com.ciklum.service;
 
-import com.ciklum.dao.ApplicationDao;
+import com.ciklum.dao.MessageDao;
 import com.ciklum.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,33 +12,34 @@ import java.util.List;
  * Created by olegnikitindev on 04.08.2016.
  */
 @Service
+@Transactional
 public class MessageService implements ApplicationService<Message> {
 
     @Autowired
-    private ApplicationDao<Message> applicationDao;
+    private MessageDao<Message> messageDao;
 
     @Override
     public List<Message> findAll() {
-        return applicationDao.findAll();
+        return messageDao.findAll();
     }
 
     @Override
     public Message find(Long id) {
-        return applicationDao.find(id);
+        return messageDao.find(id);
     }
 
     @Override
     public void create(Message message) {
-        applicationDao.create(message);
+        messageDao.create(message);
     }
 
     @Override
     public void update(Message message) {
-        applicationDao.update(message);
+        messageDao.update(message);
     }
 
     @Override
     public void delete(Message message) {
-        applicationDao.delete(message);
+        messageDao.delete(message);
     }
 }

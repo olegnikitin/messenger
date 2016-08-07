@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -19,11 +20,11 @@ import java.util.List;
 @RestController
 public class MessageRestController {
 
-    @Autowired
+    @Resource(name = "messageService")
     private ApplicationService<Message> messageService;
 
     @Autowired
-    private UserService userService;
+    private UserService<User> userService;
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public ResponseEntity<List<Message>> findAll() {
@@ -50,8 +51,7 @@ public class MessageRestController {
     }
 
     @RequestMapping(value = "/messages/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable Long id,
-                                    @RequestParam String text) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestParam String text) {
         if(StringUtils.hasText(text)) {
             Message message = messageService.find(id);
             if(message != null) {

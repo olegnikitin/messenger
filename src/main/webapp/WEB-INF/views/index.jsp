@@ -10,8 +10,7 @@
     <h1>Messages</h1>
 </header>
 <div id="main" class="container-fluid">
-    <table width="100%">
-        <%--<thead></thead>--%>
+    <table width="100%" id="messages-table">
         <tr>
             <td width="50%">Message text</td>
             <td width="20%">User name</td>

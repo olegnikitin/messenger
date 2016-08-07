@@ -1,3 +1,7 @@
 #head {
     background-color: #777777;
 }
+
+.modal-body {
+    text-align: center;
+}
