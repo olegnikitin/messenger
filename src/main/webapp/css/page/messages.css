@@ -9,3 +9,9 @@
 td {
     text-align: center;
 }
+
+#logout-btn {
+    top: 3%;
+    right: 3%;
+    position: absolute;
+}

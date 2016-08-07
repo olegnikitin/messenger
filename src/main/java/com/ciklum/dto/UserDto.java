@@ -1,12 +1,14 @@
 package com.ciklum.dto;
 
+import com.ciklum.enums.StorageType;
+
 /**
  * Created by olegnikitindev on 07.08.2016.
  */
 public class UserDto {
 
     private String name;
-    private Type type;
+    private StorageType type;
 
     public String getName() {
         return name;
@@ -16,16 +18,11 @@ public class UserDto {
         this.name = name;
     }
 
-    public Type getType() {
+    public StorageType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(StorageType type) {
         this.type = type;
     }
-
-    private enum Type {
-        MEMORY, DATABASE;
-    }
-
 }

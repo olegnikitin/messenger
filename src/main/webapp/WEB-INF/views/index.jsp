@@ -8,6 +8,7 @@
 <body>
 <header class="container-fluid">
     <h1>Messages</h1>
+    <input id="logout-btn" type="button" class="btn btn-default" value="Logout"/>
 </header>
 <div id="main" class="container-fluid">
     <table width="100%" id="messages-table" border="1">

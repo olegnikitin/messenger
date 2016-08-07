@@ -24,4 +24,8 @@ public class PropertiesRestController {
         }
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+    }
 }

@@ -17,6 +17,12 @@ $("#message-add-btn").click(function () {
     addMessageModal.modal();
 });
 
+$("#logout-btn").click(function () {
+    $.post("/logout").done(function () {
+        document.location = '/'
+    })
+});
+
 $(document).on("click", ".btn-warning", function () {
     iDMessageToUpdate = $(this).data('id');
     textMessageToUpdateBlock = $(this.parentElement.parentElement.firstChild);
