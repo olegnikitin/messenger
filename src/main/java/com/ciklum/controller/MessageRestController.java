@@ -6,6 +6,7 @@ import com.ciklum.dto.UpdateMessageDto;
 import com.ciklum.service.ApplicationService;
 import com.ciklum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.List;
  * Created by olegnikitindev on 04.08.2016.
  */
 @RestController
+@Scope("session")
 public class MessageRestController {
 
     @Resource(name = "messageService")

@@ -3,6 +3,7 @@ package com.ciklum.service;
 import com.ciklum.dao.UserDao;
 import com.ciklum.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.List;
  */
 @Service
 @Transactional
+@Scope("session")
 public class UserServiceImpl implements UserService<User> {
 
     @Autowired
