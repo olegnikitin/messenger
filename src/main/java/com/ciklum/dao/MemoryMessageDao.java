@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by olegnikitindev on 04.08.2016.
  */
 @Repository
-public class MemoryDao implements ApplicationDao<Message> {
+public class MemoryMessageDao implements ApplicationDao<Message> {
 
     private final AtomicLong sequence = new AtomicLong();
 

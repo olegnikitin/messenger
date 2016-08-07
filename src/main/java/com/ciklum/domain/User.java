@@ -24,6 +24,13 @@ public class User implements Serializable {
     @Transient
     private Set<Message> messages;
 
+    public User() {
+    }
+
+    public User(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

@@ -12,7 +12,7 @@ import java.util.List;
  * Created by olegnikitindev on 04.08.2016.
  */
 @Repository
-public class DatabaseDao implements ApplicationDao<Message> {
+public class DatabaseMessageDao implements ApplicationDao<Message> {
 
     @Autowired
     private SessionFactory sessionFactory;
