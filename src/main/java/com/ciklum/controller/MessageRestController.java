@@ -50,7 +50,6 @@ public class MessageRestController {
             User currentUser = getUser(request);
             Message message = new Message(text, currentUser);
             messageService.create(message);
-            currentUser.getMessages().add(message);
             return ResponseEntity.ok(message);
         }
         return ResponseEntity.badRequest().build();

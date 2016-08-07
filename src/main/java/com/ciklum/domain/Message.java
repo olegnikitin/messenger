@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table
-public class Message implements Serializable, Cloneable {
+public class Message implements Serializable, Cloneable, Comparable<Message> {
 
     private static final long serialVersionUID = 6293512124184L;
 
@@ -91,5 +91,11 @@ public class Message implements Serializable, Cloneable {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Message other) {
+        int comparableId = id.compareTo(other.getId());
+        return comparableId != 0 ? comparableId : getText().compareTo(other.getText());
     }
 }

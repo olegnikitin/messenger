@@ -1,6 +1,7 @@
 package com.ciklum.dao;
 
 import com.ciklum.domain.Message;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,12 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by olegnikitindev on 04.08.2016.
  */
-public class MemoryMessageDao implements ApplicationDao<Message> {
+@Repository
+public class MemoryMessageDao implements MessageDao<Message> {
 
     private final AtomicLong sequence = new AtomicLong();
 
-    private final Set<Message> messages = new ConcurrentSkipListSet<Message>();//TODO: Return clones
+    private final Set<Message> messages = new ConcurrentSkipListSet<Message>();
 
     @Override
     public List<Message> findAll() {

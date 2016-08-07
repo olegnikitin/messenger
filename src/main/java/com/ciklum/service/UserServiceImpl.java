@@ -2,11 +2,15 @@ package com.ciklum.service;
 
 import com.ciklum.dao.UserDao;
 import com.ciklum.domain.User;
+import com.ciklum.enums.StorageType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -17,8 +21,24 @@ import java.util.List;
 @Scope("session")
 public class UserServiceImpl implements UserService<User> {
 
-    @Autowired
     private UserDao<User> userDao;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
+    @PostConstruct
+    @SuppressWarnings("unchecked")
+    private void init() {
+        StorageType storageType = (StorageType) httpServletRequest.getSession().getAttribute("storageType");
+        if (storageType == StorageType.DATABASE) {
+            userDao = (UserDao<User>) applicationContext.getBean("databaseUserDao");
+        } else if (storageType == StorageType.MEMORY) {
+            userDao = (UserDao<User>) applicationContext.getBean("memoryUserDao");
+        }
+    }
 
     @Override
     public List<User> findAll() {

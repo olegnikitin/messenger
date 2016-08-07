@@ -10,7 +10,7 @@ import java.util.TreeSet;
  */
 @Entity
 @Table
-public class User implements Serializable, Cloneable {
+public class User implements Serializable, Cloneable, Comparable<User> {
 
     private static final long serialVersionUID = 6293184L;
 
@@ -89,5 +89,11 @@ public class User implements Serializable, Cloneable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User other) {
+        int comparableId = id.compareTo(other.getId());
+        return comparableId != 0 ? comparableId : getName().compareTo(other.getName());
     }
 }

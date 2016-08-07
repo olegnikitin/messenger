@@ -1,6 +1,7 @@
 package com.ciklum.dao;
 
 import com.ciklum.domain.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by olegnikitindev on 07.08.2016.
  */
+@Repository
 public class MemoryUserDao implements UserDao<User> {
 
     private final AtomicLong sequence = new AtomicLong();
