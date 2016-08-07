@@ -20,7 +20,7 @@ public class DatabaseMessageDao implements MessageDao<Message> {
     @Override
     @SuppressWarnings("unchecked")
     public List<Message> findAll() {
-        return (List<Message>) getSession().createQuery("from Message m order by m.sender.name, id desc").list();
+        return (List<Message>) getSession().createQuery("from Message m order by m.sender.name, id").list();
     }
 
     @Override

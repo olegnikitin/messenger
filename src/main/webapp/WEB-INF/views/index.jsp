@@ -16,14 +16,6 @@
             <td width="20%">User name</td>
             <td width="30%">Actions</td>
         </tr>
-        <tr>
-            <td>Some text</td>
-            <td>user1</td>
-            <td>
-                <input type="button" class="btn btn-warning" value="Edit"/>
-                <input type="button" class="btn btn-danger" value="Delete"/>
-            </td>
-        </tr>
     </table>
     <input id="message-add-btn" type="button" class="btn btn-default center-block" value="Add new message"/>
 </div>
@@ -43,6 +35,26 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="send-message-btn" type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="message-update-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add new message</h4>
+            </div>
+            <div class="modal-body">
+                <input id="message-input-update" type="text" placeholder="Enter your message here"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="update-message-btn" type="button" class="btn btn-primary">Send message</button>
             </div>
         </div>
     </div>
