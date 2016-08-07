@@ -3,13 +3,14 @@ package com.ciklum.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by olegnikitindev on 04.08.2016.
  */
 @Entity
 @Table
-public class User implements Serializable {
+public class User implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 6293184L;
 
@@ -22,7 +23,7 @@ public class User implements Serializable {
     private String name;
 
     @Transient
-    private Set<Message> messages;
+    private Set<Message> messages = new TreeSet<Message>();
 
     public User() {
     }
@@ -53,6 +54,14 @@ public class User implements Serializable {
 
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        User copy = new User();
+        copy.setName(String.valueOf(name));
+        copy.setId(Long.valueOf(id));
+        return copy;
     }
 
     @Override

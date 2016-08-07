@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table
-public class Message implements Serializable {
+public class Message implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 6293512124184L;
 
@@ -40,11 +40,15 @@ public class Message implements Serializable {
     }
 
     public String getText() {
-        return text;
+        synchronized (this) {
+            return text;
+        }
     }
 
     public void setText(String text) {
-        this.text = text;
+        synchronized (this) {
+            this.text = text;
+        }
     }
 
     public User getSender() {
@@ -53,6 +57,13 @@ public class Message implements Serializable {
 
     public void setSender(User sender) {
         this.sender = sender;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Message copy = new Message(String.valueOf(text), sender);
+        copy.setId(Long.valueOf(id));
+        return copy;
     }
 
     @Override

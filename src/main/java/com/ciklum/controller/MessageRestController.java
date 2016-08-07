@@ -45,8 +45,10 @@ public class MessageRestController {
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
     public ResponseEntity<?> create(HttpServletRequest request, @RequestParam String text) {
         if (StringUtils.hasText(text)) {
-            Message message = new Message(text, getUser(request));
+            User currentUser = getUser(request);
+            Message message = new Message(text, currentUser);
             messageService.create(message);
+            currentUser.getMessages().add(message);
             return ResponseEntity.ok(message);
         }
         return ResponseEntity.badRequest().build();
